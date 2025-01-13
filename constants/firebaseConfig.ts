@@ -4,12 +4,13 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
+    apiKey: "AIzaSyDHSGgJvVqHROiEkcZxJhe5l1stom0bGcA",
+    authDomain: "shared-image-918b6.firebaseapp.com",
+    projectId: "shared-image-918b6",
+    storageBucket: "shared-image-918b6.firebasestorage.app",
+    messagingSenderId: "654296550832",
+    appId: "1:654296550832:web:32728bdcbda5127ee19a75",
+    measurementId: "G-8SYPYE0NVJ"
 };
 
 const app = initializeApp(firebaseConfig);
