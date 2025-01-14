@@ -2,12 +2,14 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
 import { useAuth } from "../../hooks/useAuth";
+import { useRouter } from "expo-router";
 
 const LoginScreen = () => {
   const { signIn, signUp } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
+  const router = useRouter();
 
   const handleAuth = async () => {
     try {
@@ -16,6 +18,7 @@ const LoginScreen = () => {
         Alert.alert("Success", "Account created successfully!");
       } else {
         await signIn(email, password);
+        router.push("/");
         Alert.alert("Success", "Logged in successfully!");
       }
     } catch (error: any) {
