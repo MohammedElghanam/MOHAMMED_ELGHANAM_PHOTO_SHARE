@@ -13,6 +13,8 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   const { user, loading } = useAuth();
+  console.log('user', user);
+  
 
   if (loading) {
     return null;
@@ -34,27 +36,27 @@ export default function TabLayout() {
         }),
       }}>
 
-      {user ? (
+        {user ? (
 
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: 'Home',
-            tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-          }}
-        />
+          <Tabs.Screen
+            name="index"
+            options={{
+              title: 'Home',
+              tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+            }}
+          />
 
-      ) : (
+        ) : (
 
-        <Tabs.Screen
-          name="LoginScreen"
-          options={{
-            title: 'LoginScreen',
-            // tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-          }}
-        />
+          <Tabs.Screen
+            name="LoginScreen"
+            options={{
+              title: 'LoginScreen',
+              // tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+            }}
+          />
 
-      )}
+        )}
 
     </Tabs>
   );
