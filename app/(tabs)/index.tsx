@@ -84,38 +84,40 @@ import {
   Alert,
   ActivityIndicator,
 } from "react-native";
-// import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/constants/firebaseConfig";
 // import { auth } from "../constants/firebaseConfig";
+auth
 
 const HomeScreen: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const handleLogin = async () => {
-  //   if (!email || !password) {
-  //     Alert.alert("Erreur", "Veuillez entrer un email et un mot de passe.");
-  //     return;
-  //   }
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Erreur", "Veuillez entrer un email et un mot de passe.");
+      return;
+    }
 
-  //   setLoading(true);
+    setLoading(true);
 
-  //   try {
-  //     await signInWithEmailAndPassword(auth, email, password);
-  //     Alert.alert("Succès", "Connexion réussie !");
-  //     // Naviguer vers la page principale
-  //   } catch (error: any) {
-  //     let errorMessage = "Une erreur s'est produite.";
-  //     if (error.code === "auth/user-not-found") {
-  //       errorMessage = "Utilisateur introuvable.";
-  //     } else if (error.code === "auth/wrong-password") {
-  //       errorMessage = "Mot de passe incorrect.";
-  //     }
-  //     Alert.alert("Erreur", errorMessage);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      Alert.alert("Succès", "Connexion réussie !");
+      // Naviguer vers la page principale
+    } catch (error: any) {
+      let errorMessage = "Une erreur s'est produite.";
+      if (error.code === "auth/user-not-found") {
+        errorMessage = "Utilisateur introuvable.";
+      } else if (error.code === "auth/wrong-password") {
+        errorMessage = "Mot de passe incorrect.";
+      }
+      Alert.alert("Erreur", errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -137,7 +139,7 @@ const HomeScreen: React.FC = () => {
       />
       <TouchableOpacity
         style={[styles.button, loading && styles.buttonDisabled]}
-        // onPress={handleLogin}
+        onPress={handleLogin}
         disabled={loading}
       >
         {loading ? (

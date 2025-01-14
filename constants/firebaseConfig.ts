@@ -1,8 +1,9 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+// Your Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDHSGgJvVqHROiEkcZxJhe5l1stom0bGcA",
     authDomain: "shared-image-918b6.firebaseapp.com",
@@ -13,7 +14,13 @@ const firebaseConfig = {
     measurementId: "G-8SYPYE0NVJ"
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const firestore = getFirestore(app);
-export const storage = getStorage(app);
+// Check if Firebase is already initialized
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+
+// Initialize Firebase services
+const auth = getAuth(app);
+const firestore = getFirestore(app);
+const storage = getStorage(app);
+
+// Export services
+export { auth, firestore, storage };
